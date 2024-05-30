@@ -61,7 +61,7 @@ app.get('/api/movie', (req, res) => {
     });
 });
 
-app.post('/api/movies',upload.single('image'),(req, res) =>{
+app.post('/api/movie',upload.single('image'),(req, res) =>{
 
     if (!req.file){
         console.log("No File Upload");
