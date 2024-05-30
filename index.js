@@ -104,7 +104,7 @@ app.post('/api/movie',upload.single('image'),(req, res) =>{
 })
 
 // delete data
-app.delete('/api/movies/:id', (req,res)=> {
+app.delete('/api/movie/:id', (req,res)=> {
     // buat query sql untuk mencari data dan hapus
     const querySearch = 'SELECT * FROM movie where id = ?';
     const queryDelete = 'DELETE FROM movie where id = ?';
