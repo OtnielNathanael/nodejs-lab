@@ -85,7 +85,7 @@ app.post('/api/movie',upload.single('image'),(req, res) =>{
         var imgsrc = 'http://localhost:5000/images/' + req.file.filename
         // buat variabel penampung data dan query sql
             const data = {...req.body};
-            const querySql = 'INSERT INTO movies (judul, rating, deskripsi, sutradara, foto) VALUES (?,?,?,?,?);';
+            const querySql = 'INSERT INTO movie (judul, rating, deskripsi, sutradara, foto) VALUES (?,?,?,?,?);';
             const judul = data.judul;
             const rating = data.rating;
             const deskripsi = data.deskripsi;
@@ -121,7 +121,7 @@ app.delete('/api/movie/:id', (req,res)=> {
 
 
 
-app.get('/api/movies/filter/:judul', (req, res) => {
+app.get('/api/movie/filter/:judul', (req, res) => {
     // buat query sql
     const querySql = 'SELECT * FROM movie where judul like \'%' + req.params.judul + '%\';';
     console.log(querySql);
