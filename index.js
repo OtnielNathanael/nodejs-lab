@@ -5,12 +5,14 @@ const multer = require('multer')
 const path = require('path')
 const app = express();
 const port = 5000;
+const cors = require('core')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 // buat server nya
 // use express stastic folder
 app.use(express.static("./public"))
+app.use(cors())
 // use of multer
 var storage = multer.diskStorage({
     destination: (req, file, callBack) => {
