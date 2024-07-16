@@ -31,7 +31,7 @@ var upload = multer({
 // read data / get data
 app.get('/api/movie-specific/:id', (req, res) => {
     // buat query sql
-    const querySql = 'SELECT judul,rating,deskripsi FROM movie where id=?';
+    const querySql = 'SELECT judul,rating,deskripsi FROM movies where id=?';
 
     // jalankan query
     koneksi.query(querySql,req.params.id, (err, rows, field) => {
@@ -47,9 +47,9 @@ app.get('/api/movie-specific/:id', (req, res) => {
 
 
 // read data / get data
-app.get('/api/movie', (req, res) => {
+app.get('/api/movies', (req, res) => {
     // buat query sql
-    const querySql = 'SELECT * FROM movie';
+    const querySql = 'SELECT * FROM movies';
 
     // jalankan query
     koneksi.query(querySql,req.params.id, (err, rows, field) => {
@@ -63,12 +63,12 @@ app.get('/api/movie', (req, res) => {
     });
 });
 
-app.post('/api/movie',upload.single('image'),(req, res) =>{
+app.post('/api/movies',upload.single('image'),(req, res) =>{
 
     if (!req.file){
         console.log("No File Upload");
         const data = {...req.body};
-        const querySql = 'INSERT INTO movie (judul, rating, deskripsi, sutradara) VALUES (?,?,?,?)';
+        const querySql = 'INSERT INTO movies (judul, rating, deskripsi, sutradara) VALUES (?,?,?,?)';
         const judul = data.judul;
         const rating = data.rating;
         const deskripsi = data.deskripsi;
@@ -87,7 +87,7 @@ app.post('/api/movie',upload.single('image'),(req, res) =>{
         var imgsrc = 'http://localhost:5000/images/' + req.file.filename
         // buat variabel penampung data dan query sql
             const data = {...req.body};
-            const querySql = 'INSERT INTO movie (judul, rating, deskripsi, sutradara, foto) VALUES (?,?,?,?,?);';
+            const querySql = 'INSERT INTO movies (judul, rating, deskripsi, sutradara, foto) VALUES (?,?,?,?,?);';
             const judul = data.judul;
             const rating = data.rating;
             const deskripsi = data.deskripsi;
@@ -106,10 +106,10 @@ app.post('/api/movie',upload.single('image'),(req, res) =>{
 })
 
 // delete data
-app.delete('/api/movie/:id', (req,res)=> {
+app.delete('/api/movies/:id', (req,res)=> {
     // buat query sql untuk mencari data dan hapus
-    const querySearch = 'SELECT * FROM movie where id = ?';
-    const queryDelete = 'DELETE FROM movie where id = ?';
+    const querySearch = 'SELECT * FROM movies where id = ?';
+    const queryDelete = 'DELETE FROM movies where id = ?';
     koneksi.query(queryDelete,req.params.id, (err, rows, field) => {
         // error handling
         if (err) {
@@ -123,9 +123,9 @@ app.delete('/api/movie/:id', (req,res)=> {
 
 
 
-app.get('/api/movie/filter/:judul', (req, res) => {
+app.get('/api/movies/filter/:judul', (req, res) => {
     // buat query sql
-    const querySql = 'SELECT * FROM movie where judul like \'%' + req.params.judul + '%\';';
+    const querySql = 'SELECT * FROM movies where judul like \'%' + req.params.judul + '%\';';
     console.log(querySql);
     // jalankan query
     koneksi.query(querySql,req.params.id, (err, rows, field) => {
