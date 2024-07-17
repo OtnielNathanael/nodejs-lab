@@ -3,7 +3,7 @@ const koneksi = mysql.createConnection({
    host: 'Localhost',
    user: 'root',
    password: '',
-   database: 'dbmovies',
+   database: 'dbmovie',
    multipleStatements: true
 });
 

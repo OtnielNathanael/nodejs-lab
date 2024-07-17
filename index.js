@@ -29,7 +29,7 @@ var upload = multer({
 
 
 // read data / get data
-app.get('/api/movie-specific/:id', (req, res) => {
+app.get('/api/movies-specific/:id', (req, res) => {
     // buat query sql
     const querySql = 'SELECT judul,rating,deskripsi FROM movies where id=?';
 
